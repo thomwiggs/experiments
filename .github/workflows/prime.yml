@@ -3,27 +3,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  create-matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      env: ${{ steps.matrix.outputs.env }}
-    steps:
-      - name: create matrix
-        id: matrix
-        shell: bash
-        run: |
-          matrix='[{"env":"one","env":"two","env":"three"}]'
-          echo "env=$matrix" >> $GITHUB_OUTPUT
+  # create-matrix:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     env: ${{ steps.matrix.outputs.env }}
+  #   steps:
+  #     - name: create matrix
+  #       id: matrix
+  #       shell: bash
+  #       run: |
+  #         matrix='[{"env":"one","env":"two","env":"three"}]'
+  #         echo "env=$matrix" >> $GITHUB_OUTPUT
 
   call_second_flow:
     # runs-on: ubuntu-latest
     uses: thomwiggs/experiments/.github/workflows/callme.yml@main
     with:
-      env: ${{ matrix.env.env }}
-    needs: create-matrix
+      env: ${{ matrix.env }}
+    # needs: create-matrix
     strategy:
       matrix:
-        env: ${{ fromJson(needs.create-matrix.outputs.matrix) }}
+        env: [ one, two, three ]
       fail-fast: false
 
     # steps:

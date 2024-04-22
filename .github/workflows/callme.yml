@@ -4,26 +4,26 @@ on:
   workflow_call:
 
 jobs:
-  create-matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      comp: ${{ steps.matrix.outputs.matrix }}
-    steps:
-      - name: create matrix
-        id: matrix
-        shell: bash
-        run: |
-          matrix='[{"comp":"one","comp":"two","comp":"three"}]'
-          echo "comp=$matrix" >> $GITHUB_OUTPUT
+  # create-matrix:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     comp: ${{ steps.matrix.outputs.matrix }}
+  #   steps:
+  #     - name: create matrix
+  #       id: matrix
+  #       shell: bash
+  #       run: |
+  #         matrix='[{"comp":"one","comp":"two","comp":"three"}]'
+  #         echo "comp=$matrix" >> $GITHUB_OUTPUT
 
   run_second_workflow:
     runs-on: ubuntu-latest
-    needs: create-matrix
+    # needs: create-matrix
     strategy:
       matrix:
-        comp: ${{ fromJson(needs.create-matrix.outputs.matrix) }}
+        comp: [ comp1, comp2, comp3 ]
       fail-fast: false
     steps:
       - name: echo component
         shell: bash
-        run: echo ${{ matrix.comp.comp }}
+        run: echo ${{ matrix.comp }}
