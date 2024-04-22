@@ -18,11 +18,11 @@ jobs:
   call_second_flow:
     # runs-on: ubuntu-latest
     uses: thomwiggs/experiments/.github/workflows/callme.yml@main
-    # needs: create-matrix
-    # strategy:
-    #   matrix:
-    #     env: ${{ fromJson(needs.create-matrix.outputs.matrix) }}
-    #   fail-fast: false
+    needs: create-matrix
+    strategy:
+      matrix:
+        env: ${{ fromJson(needs.create-matrix.outputs.matrix) }}
+      fail-fast: false
 
     # steps:
     #   - name: call second workflow
