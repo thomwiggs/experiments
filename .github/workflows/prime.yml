@@ -24,4 +24,4 @@ jobs:
       fail-fast: false
     steps:
       - name: call second workflow
-        uses: thomwiggs/experiments/.github/workflows/callme.yml
+        uses: thomwiggs/experiments/.github/workflows/callme.yml@main
