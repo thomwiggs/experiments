@@ -2,6 +2,10 @@ name: called workflow
 on:
   workflow_dispatch:
   workflow_call:
+    inputs:
+      env:
+        type: string
+        required: true
 
 jobs:
   # create-matrix:
@@ -26,4 +30,4 @@ jobs:
     steps:
       - name: echo component
         shell: bash
-        run: echo ${{ matrix.comp }}
+        run: echo ${{ matrix.comp }} in ${{ inputs.env }}
