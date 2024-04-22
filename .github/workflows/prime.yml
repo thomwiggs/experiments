@@ -22,6 +22,7 @@ jobs:
       matrix:
         env: ${{ fromJson(needs.create-matrix.outputs.matrix) }}
       fail-fast: false
-    steps:
-      - name: call second workflow
-        uses: thomwiggs/experiments/.github/workflows/callme.yml@main
+    uses: thomwiggs/experiments/.github/workflows/callme.yml@main
+    # steps:
+    #   - name: call second workflow
+    #     uses: thomwiggs/experiments/.github/workflows/callme.yml@main
