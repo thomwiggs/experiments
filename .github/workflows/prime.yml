@@ -16,16 +16,9 @@ jobs:
   #         echo "env=$matrix" >> $GITHUB_OUTPUT
 
   call_second_flow:
-    # runs-on: ubuntu-latest
     strategy:
       matrix:
-        env: [ one, two, three ]
-      fail-fast: false
+        target: [dev, stage, prod]
     uses: thomwiggs/experiments/.github/workflows/callme.yml@main
     with:
-      env: ${{ matrix.env }}
-    # needs: create-matrix
-
-    # steps:
-    #   - name: call second workflow
-    #     uses: thomwiggs/experiments/.github/workflows/callme.yml@main
+      target: ${{ matrix.target }}
