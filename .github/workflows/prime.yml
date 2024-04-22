@@ -21,4 +21,4 @@ jobs:
         target: [dev, stage, prod]
     uses: thomwiggs/experiments/.github/workflows/callme.yml@main
     with:
-      target: ${{ matrix.target }}
+      env: ${{ matrix.target }}
