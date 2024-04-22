@@ -17,14 +17,14 @@ jobs:
 
   call_second_flow:
     # runs-on: ubuntu-latest
-    uses: thomwiggs/experiments/.github/workflows/callme.yml@main
-    with:
-      env: ${{ matrix.env }}
-    # needs: create-matrix
     strategy:
       matrix:
         env: [ one, two, three ]
       fail-fast: false
+    uses: thomwiggs/experiments/.github/workflows/callme.yml@main
+    with:
+      env: ${{ matrix.env }}
+    # needs: create-matrix
 
     # steps:
     #   - name: call second workflow
