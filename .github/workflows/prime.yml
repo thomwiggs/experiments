@@ -18,6 +18,8 @@ jobs:
   call_second_flow:
     # runs-on: ubuntu-latest
     uses: thomwiggs/experiments/.github/workflows/callme.yml@main
+    with:
+      matrix: ${{ matrix.matrix.env }}
     needs: create-matrix
     strategy:
       matrix:

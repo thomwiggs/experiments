@@ -26,4 +26,4 @@ jobs:
     steps:
       - name: echo component
         shell: bash
-        run: echo ${{ matrix.comp.comp }}
+        run: echo ${{ matrix.matrix.comp }}
