@@ -6,20 +6,20 @@ jobs:
   create-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.matrix.outputs.matrix }}
+      env: ${{ steps.matrix.outputs.env }}
     steps:
       - name: create matrix
         id: matrix
         shell: bash
         run: |
           matrix='[{"env":"one","env":"two","env":"three"}]'
-          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+          echo "env=$matrix" >> $GITHUB_OUTPUT
 
   call_second_flow:
     # runs-on: ubuntu-latest
     uses: thomwiggs/experiments/.github/workflows/callme.yml@main
     with:
-      matrix: ${{ matrix.matrix.env }}
+      env: ${{ matrix.env.env }}
     needs: create-matrix
     strategy:
       matrix:

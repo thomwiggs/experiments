@@ -7,14 +7,14 @@ jobs:
   create-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.matrix.outputs.matrix }}
+      comp: ${{ steps.matrix.outputs.matrix }}
     steps:
       - name: create matrix
         id: matrix
         shell: bash
         run: |
           matrix='[{"comp":"one","comp":"two","comp":"three"}]'
-          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+          echo "comp=$matrix" >> $GITHUB_OUTPUT
 
   run_second_workflow:
     runs-on: ubuntu-latest
@@ -26,4 +26,4 @@ jobs:
     steps:
       - name: echo component
         shell: bash
-        run: echo ${{ matrix.matrix.comp }}
+        run: echo ${{ matrix.comp.comp }}
